@@ -1,0 +1,11 @@
+{
+  "title": "ivie weds ogie",
+  "description": "Create personalized wedding invitation websites using your actual invitation design for a seamless, elegant digital experience for guests.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
