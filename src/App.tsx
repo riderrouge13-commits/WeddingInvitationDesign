@@ -344,7 +344,7 @@ const stories = [
   { num: '02', title: 'Our Journey', desc: "Through shared laughter, long conversations, and life's quiet seasons, they built something rare — a friendship first, a love story second, and a lifelong partnership that grew stronger with every passing year.", art: '✦' },
   { num: '03', title: 'The Proposal', desc: 'He made his intentions known in the time-honoured way — with prayers, with family, and with a ring that said everything his words could not. She said yes before the question was finished.', art: '◈' },
   { num: '04', title: 'The Engagement', desc: 'Families gathered, prayers were offered, and blessings were given. Two families became one in the warmth of Benin City — a celebration of heritage, love, and the beautiful future ahead.', art: '✝' },
-  { num: '05', title: 'Countdown to Forever', desc: 'On October 3rd, 2026, in the presence of God, family and friends, Jvie and Ogie will seal their covenant of love — a promise that begins not at the altar, but in every quiet moment they chose each other.', art: '◎' },
+  { num: '05', title: 'Countdown to Forever', desc: 'On October 3rd, 2026, in the presence of God, family and friends, Ivie and Ogie will seal their covenant of love — a promise that begins not at the altar, but in every quiet moment they chose each other.', art: '◎' },
 ]
 
 function Story() {
@@ -715,21 +715,32 @@ function MusicPlayer() {
     }
   }, [])
 
-  const playTone = (frequency: number, startTime: number, duration: number, volume: number, type: OscillatorType = 'sine') => {
+  const playKeyboardNote = (frequency: number, startTime: number, duration: number) => {
     const context = audioContextRef.current
     if (!context) return
 
-    const oscillator = context.createOscillator()
+    const osc = context.createOscillator()
     const gain = context.createGain()
-    oscillator.type = type
-    oscillator.frequency.value = frequency
-    gain.gain.setValueAtTime(0.0001, startTime)
-    gain.gain.exponentialRampToValueAtTime(volume, startTime + 0.04)
-    gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration)
-    oscillator.connect(gain)
+    const filter = context.createBiquadFilter()
+
+    osc.type = 'triangle'
+    osc.frequency.value = frequency
+
+    filter.type = 'lowpass'
+    filter.frequency.value = 6000
+    filter.Q.value = 2
+
+    gain.gain.setValueAtTime(0, startTime)
+    gain.gain.linearRampToValueAtTime(0.2, startTime + 0.05)
+    gain.gain.linearRampToValueAtTime(0.12, startTime + 0.15)
+    gain.gain.exponentialRampToValueAtTime(0.01, startTime + duration)
+
+    osc.connect(filter)
+    filter.connect(gain)
     gain.connect(context.destination)
-    oscillator.start(startTime)
-    oscillator.stop(startTime + duration)
+
+    osc.start(startTime)
+    osc.stop(startTime + duration)
   }
 
   const startMusic = () => {
@@ -742,24 +753,43 @@ function MusicPlayer() {
       void context.resume()
     }
 
-    const melody = [220, 261.63, 329.63, 392, 349.23, 329.63, 293.66, 261.63, 293.66, 329.63, 392, 440]
-    const harmony = [164.81, 196, 246.94, 293.66, 246.94, 220, 196, 174.61]
-    let step = 0
+    const melody = [
+      { freq: 329.63, dur: 0.5 },
+      { freq: 392, dur: 0.5 },
+      { freq: 440, dur: 0.5 },
+      { freq: 392, dur: 0.5 },
+      { freq: 349.23, dur: 0.75 },
+      { freq: 329.63, dur: 0.25 },
+      { freq: 293.66, dur: 0.5 },
+      { freq: 329.63, dur: 0.5 },
+      { freq: 392, dur: 0.5 },
+      { freq: 440, dur: 0.5 },
+      { freq: 392, dur: 1 },
+    ]
 
-    const scheduleNext = () => {
+    let stepIndex = 0
+    let currentTime = 0
+
+    const playSequence = () => {
       if (!isPlayingRef.current) return
 
+      if (stepIndex >= melody.length) {
+        stepIndex = 0
+        currentTime = 0
+      }
+
+      const note = melody[stepIndex]
       const now = context.currentTime
-      const baseFrequency = melody[step % melody.length]
-      const harmonyFrequency = harmony[step % harmony.length]
-      playTone(baseFrequency, now, 0.8, 0.035, 'sine')
-      playTone(harmonyFrequency, now + 0.06, 1.0, 0.02, 'triangle')
-      step += 1
-      timerRef.current = window.setTimeout(scheduleNext, 620)
+      playKeyboardNote(note.freq, now, note.dur)
+
+      currentTime += note.dur
+      stepIndex += 1
+
+      timerRef.current = window.setTimeout(playSequence, note.dur * 1000)
     }
 
     isPlayingRef.current = true
-    scheduleNext()
+    playSequence()
   }
 
   const stopMusic = () => {
