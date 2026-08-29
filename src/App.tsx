@@ -112,6 +112,7 @@ function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
   const links = ['Story', 'Families', 'Venue', 'Schedule', 'Gallery', 'Gifts', 'RSVP']
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'glass-nav py-3' : 'bg-transparent py-5'}`}>
       <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
@@ -337,11 +338,11 @@ function Hero() {
 
 // ─── Our Story ────────────────────────────────────────────────────────────────
 const stories = [
-  { num: '01', title: 'How We Met', desc: 'Two souls from different paths crossed in the halls of the University of Benin — a chance meeting that neither of them could have planned, yet felt written in the stars. She smiled first. He never recovered.', img: 'https://images.unsplash.com/photo-1529634597503-139d3726fed5?w=600&h=400&fit=crop&auto=format' },
-  { num: '02', title: 'Our Journey', desc: "Through shared laughter, long conversations, and life's quiet seasons, they built something rare — a friendship first, a love story second, and a lifelong partnership that grew stronger with every passing year.", img: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=400&fit=crop&auto=format' },
-  { num: '03', title: 'The Proposal', desc: 'Under a canopy of stars in the city they both call home, he got down on one knee and asked the question that changed everything. The answer came before he finished the sentence.', img: 'https://images.unsplash.com/photo-1516589091380-5d8e87df6999?w=600&h=400&fit=crop&auto=format' },
-  { num: '04', title: 'The Engagement', desc: 'Families gathered, prayers were offered, and blessings were given. Two families became one in the warmth of Benin City — a celebration of heritage, love, and the beautiful future ahead.', img: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=600&h=400&fit=crop&auto=format' },
-  { num: '05', title: 'Countdown to Forever', desc: 'On October 3rd, 2026, in the presence of God, family and friends, Jvie and Ogie will seal their covenant of love — a promise that begins not at the altar, but in every quiet moment they chose each other.', img: 'https://images.unsplash.com/photo-1595662000432-f8cdba893fa4?w=600&h=400&fit=crop&auto=format' },
+  { num: '01', title: 'How We Met', desc: 'Two souls from different paths crossed in the halls of the University of Benin — a chance meeting that neither of them could have planned, yet felt written in the stars. She smiled first. He never recovered.', img: 'https://images.unsplash.com/photo-1661332306744-70f9ed1a7f40?w=600&h=400&fit=crop&auto=format' },
+  { num: '02', title: 'Our Journey', desc: "Through shared laughter, long conversations, and life's quiet seasons, they built something rare — a friendship first, a love story second, and a lifelong partnership that grew stronger with every passing year.", img: 'https://images.unsplash.com/photo-1735655182695-f1a5d04b3d7b?w=600&h=400&fit=crop&auto=format' },
+  { num: '03', title: 'The Proposal', desc: 'He made his intentions known in the time-honoured way — with prayers, with family, and with a ring that said everything his words could not. She said yes before the question was finished.', img: 'https://images.unsplash.com/photo-1739526169655-0378b9aae5ab?w=600&h=400&fit=crop&auto=format' },
+  { num: '04', title: 'The Engagement', desc: 'Families gathered, prayers were offered, and blessings were given. Two families became one in the warmth of Benin City — a celebration of heritage, love, and the beautiful future ahead.', img: 'https://images.unsplash.com/photo-1722481746744-c6c95b900003?w=600&h=400&fit=crop&auto=format' },
+  { num: '05', title: 'Countdown to Forever', desc: 'On October 3rd, 2026, in the presence of God, family and friends, Jvie and Ogie will seal their covenant of love — a promise that begins not at the altar, but in every quiet moment they chose each other.', img: 'https://images.unsplash.com/photo-1735655182687-bee6ed98522d?w=600&h=400&fit=crop&auto=format' },
 ]
 
 function Story() {
@@ -442,7 +443,7 @@ function Venue() {
       date: 'Saturday, October 3rd, 2026',
       time: '10:00 AM',
       map: 'https://maps.google.com/?q=St+Alberts+Catholic+Church+UBTH+Benin+City',
-      img: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=600&h=360&fit=crop&auto=format',
+      img: 'https://images.unsplash.com/photo-1735655182695-f1a5d04b3d7b?w=600&h=360&fit=crop&auto=format',
     },
     {
       type: 'Reception',
@@ -452,7 +453,7 @@ function Venue() {
       date: 'Saturday, October 3rd, 2026',
       time: 'Immediately After The Wedding',
       map: 'https://maps.google.com/?q=UYI+Grand+Marquee+GRA+Benin+City',
-      img: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=600&h=360&fit=crop&auto=format',
+      img: 'https://images.unsplash.com/photo-1614626446886-c119885157b9?w=600&h=360&fit=crop&auto=format',
     },
   ]
   return (
@@ -604,14 +605,14 @@ function Celebration() {
 
 // ─── Gallery ──────────────────────────────────────────────────────────────────
 const galleryPhotos = [
-  { url: 'https://images.unsplash.com/photo-1529634597503-139d3726fed5?w=500&h=650&fit=crop&auto=format', alt: 'Couple holding hands' },
-  { url: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=500&h=400&fit=crop&auto=format', alt: 'Wedding ceremony' },
-  { url: 'https://images.unsplash.com/photo-1595662000432-f8cdba893fa4?w=500&h=350&fit=crop&auto=format', alt: 'Wedding ring close-up' },
-  { url: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=500&h=600&fit=crop&auto=format', alt: 'Engagement celebration' },
-  { url: 'https://images.unsplash.com/photo-1516589091380-5d8e87df6999?w=500&h=350&fit=crop&auto=format', alt: 'Proposal moment' },
-  { url: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=500&h=550&fit=crop&auto=format', alt: 'Wedding church' },
-  { url: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=500&h=400&fit=crop&auto=format', alt: 'Reception venue' },
-  { url: 'https://images.unsplash.com/photo-1684244276932-6ae853774c4d?w=500&h=500&fit=crop&auto=format', alt: 'Couple with flowers' },
+  { url: 'https://images.unsplash.com/photo-1661332306744-70f9ed1a7f40?w=500&h=650&fit=crop&auto=format', alt: 'Nigerian couple in traditional wedding attire' },
+  { url: 'https://images.unsplash.com/photo-1735655182687-bee6ed98522d?w=500&h=400&fit=crop&auto=format', alt: 'African bride and groom kissing at church altar' },
+  { url: 'https://images.unsplash.com/photo-1735655182695-f1a5d04b3d7b?w=500&h=350&fit=crop&auto=format', alt: 'Newly married African couple walking down the aisle' },
+  { url: 'https://images.unsplash.com/photo-1695281536457-01f9a07c575b?w=500&h=600&fit=crop&auto=format', alt: 'African bride and groom embracing under a tree' },
+  { url: 'https://images.unsplash.com/photo-1780847614316-c9e933e9a9e0?w=500&h=350&fit=crop&auto=format', alt: 'Nigerian wedding in traditional attire outdoors' },
+  { url: 'https://images.unsplash.com/photo-1767929820565-1f82e8d7b66f?w=500&h=550&fit=crop&auto=format', alt: 'Men in ornate Nigerian traditional attire' },
+  { url: 'https://images.unsplash.com/photo-1614626446886-c119885157b9?w=500&h=400&fit=crop&auto=format', alt: 'African bride and groom dancing at reception' },
+  { url: 'https://images.unsplash.com/photo-1689152496387-7c91e1ad129e?w=500&h=500&fit=crop&auto=format', alt: 'African women celebrating at wedding reception' },
 ]
 
 function Gallery() {
@@ -652,55 +653,6 @@ function Gallery() {
   )
 }
 
-// ─── Attire ───────────────────────────────────────────────────────────────────
-const attireItems = [
-  { name: "Bridal Lace — Ivory", price: '₦85,000', img: 'https://images.unsplash.com/photo-1594552072238-b8a33785b6cd?w=400&h=500&fit=crop&auto=format', phone: theme.rsvpPhone1 },
-  { name: "Groom's Agbada — Burgundy Gold", price: '₦120,000', img: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=400&h=500&fit=crop&auto=format', phone: theme.rsvpPhone1 },
-  { name: "Asoebi — Pine Green", price: '₦45,000', img: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?w=400&h=500&fit=crop&auto=format', phone: theme.rsvpPhone2 },
-]
-
-function Attire() {
-  return (
-    <section className="py-24 px-6 section-bg-pine">
-      <div className="max-w-5xl mx-auto">
-        <Reveal>
-          <SectionLabel>Dress Code</SectionLabel>
-          <SectionTitle>Wedding Attire</SectionTitle>
-          <GoldDivider className="max-w-xs mx-auto" />
-          <p className="text-center font-lora italic text-sm mt-4" style={{ fontFamily: "'Lora', serif", color: theme.accentColor, opacity: 0.75 }}>
-            Colors: Pine Green · Burgundy · Gold
-          </p>
-        </Reveal>
-
-        <div className="mt-16 grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {attireItems.map((item, i) => (
-            <Reveal key={item.name} delay={i * 100}>
-              <div className="overflow-hidden group" style={{ border: '1px solid rgba(201,162,39,0.25)', background: 'rgba(15,43,30,0.5)' }}>
-                <div className="overflow-hidden h-64">
-                  <img src={item.img} alt={item.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                </div>
-                <div className="p-5">
-                  <h4 className="font-cinzel text-xs tracking-wider uppercase mb-1" style={{ fontFamily: "'Cinzel', serif", color: theme.accentLight }}>
-                    {item.name}
-                  </h4>
-                  <p className="font-cinzel text-base font-semibold mb-4" style={{ fontFamily: "'Cinzel', serif", color: theme.accentColor }}>
-                    {item.price}
-                  </p>
-                  <a href={`https://wa.me/234${item.phone.slice(1)}?text=Hi, I'd like to order: ${item.name}`}
-                     target="_blank" rel="noopener noreferrer"
-                     className="block text-center font-cinzel text-xs tracking-[0.2em] uppercase py-2.5 transition-all duration-300 no-underline"
-                     style={{ fontFamily: "'Cinzel', serif", background: theme.accentColor, color: theme.deepColor }}>
-                    Order on WhatsApp
-                  </a>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
 
 // ─── Gifts ────────────────────────────────────────────────────────────────────
 function Gifts() {
@@ -731,7 +683,6 @@ function Gifts() {
               {[
                 { label: 'Account Name', value: theme.accountName, key: 'name' },
                 { label: 'Account Number', value: theme.accountNumber, key: 'acc' },
-                { label: 'Bank', value: theme.bankName, key: 'bank' },
               ].map(field => (
                 <div key={field.key} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-3 border-b" style={{ borderColor: 'rgba(201,162,39,0.2)' }}>
                   <div>
@@ -745,6 +696,10 @@ function Gifts() {
                   </button>
                 </div>
               ))}
+              <div className="flex flex-col py-3">
+                <p className="font-cinzel text-xs tracking-[0.2em] uppercase mb-1" style={{ fontFamily: "'Cinzel', serif", color: theme.accentColor, opacity: 0.6 }}>Bank</p>
+                <p className="font-cinzel font-semibold text-sm" style={{ fontFamily: "'Cinzel', serif", color: theme.accentLight }}>{theme.bankName}</p>
+              </div>
             </div>
           </div>
         </Reveal>
@@ -872,8 +827,6 @@ function RSVP() {
 
 // ─── Contacts ─────────────────────────────────────────────────────────────────
 const contacts = [
-  { name: 'Stella-Maris (Bride)', phone: theme.rsvpPhone1, role: 'Bride' },
-  { name: 'Success (Groom)', phone: theme.rsvpPhone2, role: 'Groom' },
   { name: 'Bridal Coordinator', phone: '08056789012', role: 'Coordinator' },
   { name: 'Event Planner', phone: '08034567890', role: 'Planner' },
 ]
@@ -1000,7 +953,7 @@ function MusicPlayer() {
   )
 }
 
-// ─── App ──────────────────────────────────────────────────────────────────────
+// ─── App Root ─────────────────────────────────────────────────────────────────
 export default function App() {
   return (
     <div style={{ fontFamily: "'Lora', serif" }}>
@@ -1012,7 +965,6 @@ export default function App() {
       <Schedule />
       <Celebration />
       <Gallery />
-      <Attire />
       <Gifts />
       <RSVP />
       <Contacts />
