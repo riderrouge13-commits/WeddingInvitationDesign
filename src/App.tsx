@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, type ReactNode } from 'react'
-import weddingHands from '@/imports/photo_19_2026-08-06_15-34-53.jpg'
 
 // ─── Theme ────────────────────────────────────────────────────────────────────
 const theme = {
@@ -14,12 +13,12 @@ const theme = {
   cream: '#FDF8F0',
   coupleA: 'Stella-Maris',
   coupleALast: 'Alegimenlen',
-  coupleAScript: 'Jvie',
+  coupleAScript: 'Ivie',
   coupleB: 'Success',
   coupleBLast: 'Ugiagbe',
   coupleBScript: 'Ogie',
   monogram: 'OI',
-  hashtag: '#JvieAndOgie2026',
+  hashtag: '#IvieAndOgie2026',
   weddingDate: new Date('2026-10-03T10:00:00'),
   dateDisplay: 'Saturday, October 3rd, 2026',
   dateShort: 'OCT 03, 2026',
@@ -111,7 +110,7 @@ function Navbar() {
     window.addEventListener('scroll', onScroll)
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
-  const links = ['Story', 'Families', 'Venue', 'Schedule', 'Gallery', 'Gifts', 'RSVP']
+  const links = ['Story', 'Families', 'Venue', 'Schedule', 'Contacts']
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'glass-nav py-3' : 'bg-transparent py-5'}`}>
@@ -132,12 +131,6 @@ function Navbar() {
             </a>
           ))}
         </div>
-        {/* RSVP button */}
-        <a href="#rsvp"
-           className="hidden md:block font-cinzel text-xs tracking-[0.2em] uppercase px-6 py-2.5 border transition-all duration-300 hover:bg-gold hover:text-white no-underline"
-           style={{ fontFamily: "'Cinzel', serif", borderColor: theme.accentColor, color: theme.accentColor }}>
-          RSVP
-        </a>
         {/* Mobile hamburger */}
         <button className="md:hidden flex flex-col gap-1.5 p-1" onClick={() => setMenuOpen(v => !v)}>
           {[0,1,2].map(i => (
@@ -151,7 +144,7 @@ function Navbar() {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden glass-nav px-6 py-6 flex flex-col gap-4 border-t" style={{ borderColor: 'rgba(201,162,39,0.2)' }}>
-          {[...links, 'RSVP'].map(l => (
+          {links.map(l => (
             <a key={l} href={`#${l.toLowerCase()}`}
                onClick={() => setMenuOpen(false)}
                className="font-cinzel text-sm tracking-[0.2em] uppercase no-underline"
@@ -207,12 +200,21 @@ function Hero() {
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden"
              style={{ background: theme.deepColor }}>
-      {/* B&W photo left half */}
+      {/* Faceless Nigerian-inspired artwork left half */}
       <div className="absolute inset-0 flex">
-        <div className="w-full md:w-2/5 overflow-hidden relative">
-          <img src={weddingHands} alt="Stella-Maris and Success holding hands"
-               className="w-full h-full object-cover object-center grayscale"
-               style={{ filter: 'grayscale(100%) brightness(0.65)' }} />
+        <div className="w-full md:w-2/5 overflow-hidden relative" style={{
+          background: 'radial-gradient(circle at 35% 35%, rgba(201,162,39,0.28), transparent 18%), linear-gradient(135deg, #100d10 0%, #3E0510 42%, #1B4332 100%)',
+        }}>
+          <div className="absolute inset-0 opacity-70" style={{
+            backgroundImage: 'linear-gradient(rgba(201,162,39,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(201,162,39,0.08) 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
+          }} />
+          <div className="absolute inset-6 border border-[rgba(201,162,39,0.28)] rounded-sm" />
+          <div className="absolute inset-x-10 top-10 bottom-10 flex items-center justify-center">
+            <div className="flex h-full w-full items-center justify-center rounded-sm border border-[rgba(201,162,39,0.28)] bg-[rgba(13,8,10,0.26)] backdrop-blur-[1px]">
+              <span className="select-none" style={{ fontFamily: "'Great Vibes', cursive", fontSize: 'clamp(5rem, 17vw, 12rem)', color: 'rgba(232,201,122,0.85)' }}>OI</span>
+            </div>
+          </div>
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, transparent 60%, rgba(62,5,16,1) 100%)' }} />
         </div>
         <div className="hidden md:block w-3/5" style={{ background: theme.primaryColor }} />
@@ -338,11 +340,11 @@ function Hero() {
 
 // ─── Our Story ────────────────────────────────────────────────────────────────
 const stories = [
-  { num: '01', title: 'How We Met', desc: 'Two souls from different paths crossed in the halls of the University of Benin — a chance meeting that neither of them could have planned, yet felt written in the stars. She smiled first. He never recovered.', img: 'https://images.unsplash.com/photo-1661332306744-70f9ed1a7f40?w=600&h=400&fit=crop&auto=format' },
-  { num: '02', title: 'Our Journey', desc: "Through shared laughter, long conversations, and life's quiet seasons, they built something rare — a friendship first, a love story second, and a lifelong partnership that grew stronger with every passing year.", img: 'https://images.unsplash.com/photo-1735655182695-f1a5d04b3d7b?w=600&h=400&fit=crop&auto=format' },
-  { num: '03', title: 'The Proposal', desc: 'He made his intentions known in the time-honoured way — with prayers, with family, and with a ring that said everything his words could not. She said yes before the question was finished.', img: 'https://images.unsplash.com/photo-1739526169655-0378b9aae5ab?w=600&h=400&fit=crop&auto=format' },
-  { num: '04', title: 'The Engagement', desc: 'Families gathered, prayers were offered, and blessings were given. Two families became one in the warmth of Benin City — a celebration of heritage, love, and the beautiful future ahead.', img: 'https://images.unsplash.com/photo-1722481746744-c6c95b900003?w=600&h=400&fit=crop&auto=format' },
-  { num: '05', title: 'Countdown to Forever', desc: 'On October 3rd, 2026, in the presence of God, family and friends, Jvie and Ogie will seal their covenant of love — a promise that begins not at the altar, but in every quiet moment they chose each other.', img: 'https://images.unsplash.com/photo-1735655182687-bee6ed98522d?w=600&h=400&fit=crop&auto=format' },
+  { num: '01', title: 'How We Met', desc: 'Two souls from different paths crossed in the halls of the University of Benin — a chance meeting that neither of them could have planned, yet felt written in the stars. She smiled first. He never recovered.', art: '❧' },
+  { num: '02', title: 'Our Journey', desc: "Through shared laughter, long conversations, and life's quiet seasons, they built something rare — a friendship first, a love story second, and a lifelong partnership that grew stronger with every passing year.", art: '✦' },
+  { num: '03', title: 'The Proposal', desc: 'He made his intentions known in the time-honoured way — with prayers, with family, and with a ring that said everything his words could not. She said yes before the question was finished.', art: '◈' },
+  { num: '04', title: 'The Engagement', desc: 'Families gathered, prayers were offered, and blessings were given. Two families became one in the warmth of Benin City — a celebration of heritage, love, and the beautiful future ahead.', art: '✝' },
+  { num: '05', title: 'Countdown to Forever', desc: 'On October 3rd, 2026, in the presence of God, family and friends, Jvie and Ogie will seal their covenant of love — a promise that begins not at the altar, but in every quiet moment they chose each other.', art: '◎' },
 ]
 
 function Story() {
@@ -359,8 +361,9 @@ function Story() {
           {stories.map((s, i) => (
             <Reveal key={s.num} delay={i * 80}>
               <div className={`flex flex-col ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 md:gap-12 items-center`}>
-                <div className="w-full md:w-1/2 overflow-hidden rounded-sm" style={{ border: `1px solid rgba(201,162,39,0.25)` }}>
-                  <img src={s.img} alt={s.title} className="w-full h-64 object-cover transition-transform duration-700 hover:scale-105" />
+                <div className="w-full md:w-1/2 overflow-hidden rounded-sm relative" style={{ border: `1px solid rgba(201,162,39,0.25)`, background: 'radial-gradient(circle at 35% 25%, rgba(201,162,39,0.28), transparent 20%), linear-gradient(135deg, rgba(2,8,10,0.95), rgba(62,5,16,0.9), rgba(27,67,50,0.9))', minHeight: '16rem' }}>
+                  <div className="absolute inset-4 border border-[rgba(201,162,39,0.3)]" />
+                  <div className="absolute inset-0 flex items-center justify-center" style={{ fontFamily: "'Great Vibes', cursive", fontSize: 'clamp(4rem, 10vw, 7rem)', color: 'rgba(232,201,122,0.8)' }}>{s.art}</div>
                 </div>
                 <div className="w-full md:w-1/2">
                   <p className="font-cinzel font-bold text-5xl mb-2" style={{ fontFamily: "'Cinzel', serif", color: 'rgba(201,162,39,0.18)' }}>{s.num}</p>
@@ -443,7 +446,7 @@ function Venue() {
       date: 'Saturday, October 3rd, 2026',
       time: '10:00 AM',
       map: 'https://maps.google.com/?q=St+Alberts+Catholic+Church+UBTH+Benin+City',
-      img: 'https://images.unsplash.com/photo-1735655182695-f1a5d04b3d7b?w=600&h=360&fit=crop&auto=format',
+      art: '❧',
     },
     {
       type: 'Reception',
@@ -453,7 +456,7 @@ function Venue() {
       date: 'Saturday, October 3rd, 2026',
       time: 'Immediately After The Wedding',
       map: 'https://maps.google.com/?q=UYI+Grand+Marquee+GRA+Benin+City',
-      img: 'https://images.unsplash.com/photo-1614626446886-c119885157b9?w=600&h=360&fit=crop&auto=format',
+      art: '✦',
     },
   ]
   return (
@@ -469,9 +472,9 @@ function Venue() {
           {venues.map((v, i) => (
             <Reveal key={v.type} delay={i * 150}>
               <div className="overflow-hidden" style={{ border: '1px solid rgba(201,162,39,0.3)', background: 'rgba(93,7,25,0.4)' }}>
-                <div className="relative overflow-hidden h-52">
-                  <img src={v.img} alt={v.name} className="w-full h-full object-cover transition-transform duration-700 hover:scale-105" />
-                  <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(62,5,16,0.9) 0%, transparent 60%)' }} />
+                <div className="relative overflow-hidden h-52" style={{ background: 'radial-gradient(circle at 30% 30%, rgba(201,162,39,0.26), transparent 18%), linear-gradient(135deg, rgba(20,10,12,0.98), rgba(62,5,16,0.95), rgba(27,67,50,0.86))' }}>
+                  <div className="absolute inset-4 border border-[rgba(201,162,39,0.25)]" />
+                  <div className="absolute inset-0 flex items-center justify-center" style={{ fontFamily: "'Great Vibes', cursive", fontSize: 'clamp(4rem, 12vw, 7rem)', color: 'rgba(232,201,122,0.85)' }}>{v.art}</div>
                   <div className="absolute bottom-4 left-4">
                     <span className="font-cinzel text-xs tracking-[0.3em] uppercase px-3 py-1" style={{ fontFamily: "'Cinzel', serif", background: theme.accentColor, color: theme.deepColor }}>
                       {v.type}
@@ -603,228 +606,6 @@ function Celebration() {
   )
 }
 
-// ─── Gallery ──────────────────────────────────────────────────────────────────
-const galleryPhotos = [
-  { url: 'https://images.unsplash.com/photo-1661332306744-70f9ed1a7f40?w=500&h=650&fit=crop&auto=format', alt: 'Nigerian couple in traditional wedding attire' },
-  { url: 'https://images.unsplash.com/photo-1735655182687-bee6ed98522d?w=500&h=400&fit=crop&auto=format', alt: 'African bride and groom kissing at church altar' },
-  { url: 'https://images.unsplash.com/photo-1735655182695-f1a5d04b3d7b?w=500&h=350&fit=crop&auto=format', alt: 'Newly married African couple walking down the aisle' },
-  { url: 'https://images.unsplash.com/photo-1695281536457-01f9a07c575b?w=500&h=600&fit=crop&auto=format', alt: 'African bride and groom embracing under a tree' },
-  { url: 'https://images.unsplash.com/photo-1780847614316-c9e933e9a9e0?w=500&h=350&fit=crop&auto=format', alt: 'Nigerian wedding in traditional attire outdoors' },
-  { url: 'https://images.unsplash.com/photo-1767929820565-1f82e8d7b66f?w=500&h=550&fit=crop&auto=format', alt: 'Men in ornate Nigerian traditional attire' },
-  { url: 'https://images.unsplash.com/photo-1614626446886-c119885157b9?w=500&h=400&fit=crop&auto=format', alt: 'African bride and groom dancing at reception' },
-  { url: 'https://images.unsplash.com/photo-1689152496387-7c91e1ad129e?w=500&h=500&fit=crop&auto=format', alt: 'African women celebrating at wedding reception' },
-]
-
-function Gallery() {
-  const [lightbox, setLightbox] = useState<string | null>(null)
-  return (
-    <section id="gallery" className="py-24 px-6" style={{ background: theme.deepColor }}>
-      <div className="max-w-5xl mx-auto">
-        <Reveal>
-          <SectionLabel>Memories</SectionLabel>
-          <SectionTitle>Our Gallery</SectionTitle>
-          <GoldDivider className="max-w-xs mx-auto" />
-        </Reveal>
-
-        <div className="mt-16 columns-2 sm:columns-3 gap-3 space-y-3">
-          {galleryPhotos.map((p, i) => (
-            <Reveal key={p.url} delay={i * 50}>
-              <div className="break-inside-avoid cursor-pointer overflow-hidden group"
-                   style={{ border: '1px solid rgba(201,162,39,0.2)' }}
-                   onClick={() => setLightbox(p.url)}>
-                <img src={p.url} alt={p.alt}
-                     className="w-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-110" />
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-
-      {/* Lightbox */}
-      {lightbox && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4"
-             style={{ background: 'rgba(15,2,7,0.95)' }}
-             onClick={() => setLightbox(null)}>
-          <img src={lightbox} alt="Gallery photo" className="max-w-full max-h-[90vh] object-contain" style={{ border: '1px solid rgba(201,162,39,0.3)' }} />
-          <button className="absolute top-6 right-6 font-cinzel text-lg" style={{ color: theme.accentColor }}>✕</button>
-        </div>
-      )}
-    </section>
-  )
-}
-
-
-// ─── Gifts ────────────────────────────────────────────────────────────────────
-function Gifts() {
-  const [copied, setCopied] = useState('')
-  const copy = (val: string, key: string) => {
-    navigator.clipboard.writeText(val).then(() => { setCopied(key); setTimeout(() => setCopied(''), 2000) })
-  }
-  return (
-    <section id="gifts" className="py-24 px-6" style={{ background: theme.primaryColor }}>
-      <div className="max-w-3xl mx-auto">
-        <Reveal>
-          <SectionLabel>With Love</SectionLabel>
-          <SectionTitle>Gift &amp; Donations</SectionTitle>
-          <GoldDivider className="max-w-xs mx-auto" />
-          <p className="text-center font-lora italic text-sm mt-4 max-w-lg mx-auto" style={{ fontFamily: "'Lora', serif", color: theme.accentColor, opacity: 0.75 }}>
-            Your presence is the greatest gift. If you wish to bless us further, here are the details.
-          </p>
-        </Reveal>
-
-        <Reveal delay={200}>
-          <div className="mt-12 p-8 relative" style={{ border: '1px solid rgba(201,162,39,0.4)', background: 'rgba(62,5,16,0.5)' }}>
-            <div className="absolute top-3 left-3 w-4 h-4 border-t border-l" style={{ borderColor: theme.accentColor }} />
-            <div className="absolute top-3 right-3 w-4 h-4 border-t border-r" style={{ borderColor: theme.accentColor }} />
-            <div className="absolute bottom-3 left-3 w-4 h-4 border-b border-l" style={{ borderColor: theme.accentColor }} />
-            <div className="absolute bottom-3 right-3 w-4 h-4 border-b border-r" style={{ borderColor: theme.accentColor }} />
-
-            <div className="space-y-5">
-              {[
-                { label: 'Account Name', value: theme.accountName, key: 'name' },
-                { label: 'Account Number', value: theme.accountNumber, key: 'acc' },
-              ].map(field => (
-                <div key={field.key} className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 py-3 border-b" style={{ borderColor: 'rgba(201,162,39,0.2)' }}>
-                  <div>
-                    <p className="font-cinzel text-xs tracking-[0.2em] uppercase mb-1" style={{ fontFamily: "'Cinzel', serif", color: theme.accentColor, opacity: 0.6 }}>{field.label}</p>
-                    <p className="font-cinzel font-semibold text-sm" style={{ fontFamily: "'Cinzel', serif", color: theme.accentLight }}>{field.value}</p>
-                  </div>
-                  <button onClick={() => copy(field.value, field.key)}
-                          className="font-cinzel text-xs tracking-wider uppercase px-5 py-2 border transition-all duration-300 hover:bg-gold"
-                          style={{ fontFamily: "'Cinzel', serif", borderColor: theme.accentColor, color: copied === field.key ? theme.deepColor : theme.accentColor, background: copied === field.key ? theme.accentColor : 'transparent' }}>
-                    {copied === field.key ? 'Copied!' : 'Copy'}
-                  </button>
-                </div>
-              ))}
-              <div className="flex flex-col py-3">
-                <p className="font-cinzel text-xs tracking-[0.2em] uppercase mb-1" style={{ fontFamily: "'Cinzel', serif", color: theme.accentColor, opacity: 0.6 }}>Bank</p>
-                <p className="font-cinzel font-semibold text-sm" style={{ fontFamily: "'Cinzel', serif", color: theme.accentLight }}>{theme.bankName}</p>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  )
-}
-
-// ─── RSVP ─────────────────────────────────────────────────────────────────────
-function RSVP() {
-  const [form, setForm] = useState({ name: '', phone: '', email: '', guests: '1', attending: 'yes', meal: 'standard', requests: '' })
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setTimeout(() => { setLoading(false); setSubmitted(true) }, 1500)
-  }
-
-  const inputStyle = {
-    fontFamily: "'Cinzel', serif",
-    background: 'rgba(62,5,16,0.5)',
-    border: '1px solid rgba(201,162,39,0.35)',
-    color: theme.accentLight,
-    outline: 'none',
-  }
-  const labelStyle = { fontFamily: "'Cinzel', serif", color: theme.accentColor, fontSize: '0.65rem', letterSpacing: '0.25em', textTransform: 'uppercase' as const }
-
-  return (
-    <section id="rsvp" className="py-24 px-6" style={{ background: theme.deepColor }}>
-      <div className="max-w-2xl mx-auto">
-        <Reveal>
-          <SectionLabel>Will You Join Us?</SectionLabel>
-          <SectionTitle script>RSVP</SectionTitle>
-          <GoldDivider className="max-w-xs mx-auto" />
-        </Reveal>
-
-        <Reveal delay={200}>
-          <div className="mt-12 p-8 relative" style={{ border: '1px solid rgba(201,162,39,0.35)', background: 'rgba(93,7,25,0.35)' }}>
-            {submitted ? (
-              <div className="text-center py-12 animate-scale-in">
-                <span className="gold-text-shimmer" style={{ fontFamily: "'Great Vibes', cursive", fontSize: '5rem', display: 'block', lineHeight: 1, marginBottom: '1rem' }}>
-                  Thank You
-                </span>
-                <GoldDivider className="max-w-32 mx-auto" />
-                <p className="font-cinzel text-sm tracking-wider mt-6" style={{ fontFamily: "'Cinzel', serif", color: theme.accentColor }}>
-                  We can't wait to celebrate with you!
-                </p>
-                <p className="font-lora italic text-xs mt-2" style={{ fontFamily: "'Lora', serif", color: theme.accentColor, opacity: 0.7 }}>
-                  Your response has been recorded.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <label style={labelStyle} className="block mb-2">Full Name</label>
-                    <input required value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))}
-                           placeholder="Your full name" style={inputStyle}
-                           className="w-full px-4 py-3 text-sm transition-colors focus:border-gold" />
-                  </div>
-                  <div>
-                    <label style={labelStyle} className="block mb-2">Phone Number</label>
-                    <input type="tel" value={form.phone} onChange={e => setForm(f => ({...f, phone: e.target.value}))}
-                           placeholder="08000000000" style={inputStyle}
-                           className="w-full px-4 py-3 text-sm" />
-                  </div>
-                </div>
-                <div className="grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <label style={labelStyle} className="block mb-2">Email Address</label>
-                    <input type="email" value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))}
-                           placeholder="you@example.com" style={inputStyle}
-                           className="w-full px-4 py-3 text-sm" />
-                  </div>
-                  <div>
-                    <label style={labelStyle} className="block mb-2">Number of Guests</label>
-                    <select value={form.guests} onChange={e => setForm(f => ({...f, guests: e.target.value}))}
-                            style={inputStyle} className="w-full px-4 py-3 text-sm">
-                      {['1','2','3','4','5+'].map(n => <option key={n} value={n}>{n}</option>)}
-                    </select>
-                  </div>
-                </div>
-                <div className="grid sm:grid-cols-2 gap-6">
-                  <div>
-                    <label style={labelStyle} className="block mb-2">Will You Attend?</label>
-                    <select value={form.attending} onChange={e => setForm(f => ({...f, attending: e.target.value}))}
-                            style={inputStyle} className="w-full px-4 py-3 text-sm">
-                      <option value="yes">Joyfully Accept</option>
-                      <option value="no">Regretfully Decline</option>
-                      <option value="maybe">Yet to Confirm</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label style={labelStyle} className="block mb-2">Meal Preference</label>
-                    <select value={form.meal} onChange={e => setForm(f => ({...f, meal: e.target.value}))}
-                            style={inputStyle} className="w-full px-4 py-3 text-sm">
-                      <option value="standard">Standard</option>
-                      <option value="vegetarian">Vegetarian</option>
-                      <option value="vegan">Vegan</option>
-                      <option value="halal">Halal</option>
-                    </select>
-                  </div>
-                </div>
-                <div>
-                  <label style={labelStyle} className="block mb-2">Special Requests</label>
-                  <textarea value={form.requests} onChange={e => setForm(f => ({...f, requests: e.target.value}))}
-                            rows={3} placeholder="Dietary restrictions, accessibility needs, etc." style={inputStyle}
-                            className="w-full px-4 py-3 text-sm resize-none" />
-                </div>
-                <button type="submit" disabled={loading}
-                        className="w-full font-cinzel text-sm tracking-[0.3em] uppercase py-4 transition-all duration-300 hover:opacity-90"
-                        style={{ fontFamily: "'Cinzel', serif", background: theme.accentColor, color: theme.deepColor, opacity: loading ? 0.7 : 1 }}>
-                  {loading ? 'Sending...' : 'Confirm Attendance'}
-                </button>
-              </form>
-            )}
-          </div>
-        </Reveal>
-      </div>
-    </section>
-  )
-}
-
 // ─── Contacts ─────────────────────────────────────────────────────────────────
 const contacts = [
   { name: 'Bridal Coordinator', phone: '08056789012', role: 'Coordinator' },
@@ -921,6 +702,85 @@ function Footer() {
 function MusicPlayer() {
   const [playing, setPlaying] = useState(false)
   const [expanded, setExpanded] = useState(false)
+  const audioContextRef = useRef<AudioContext | null>(null)
+  const timerRef = useRef<number | null>(null)
+  const isPlayingRef = useRef(false)
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) window.clearTimeout(timerRef.current)
+      if (audioContextRef.current) {
+        void audioContextRef.current.close()
+      }
+    }
+  }, [])
+
+  const playTone = (frequency: number, startTime: number, duration: number, volume: number, type: OscillatorType = 'sine') => {
+    const context = audioContextRef.current
+    if (!context) return
+
+    const oscillator = context.createOscillator()
+    const gain = context.createGain()
+    oscillator.type = type
+    oscillator.frequency.value = frequency
+    gain.gain.setValueAtTime(0.0001, startTime)
+    gain.gain.exponentialRampToValueAtTime(volume, startTime + 0.04)
+    gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration)
+    oscillator.connect(gain)
+    gain.connect(context.destination)
+    oscillator.start(startTime)
+    oscillator.stop(startTime + duration)
+  }
+
+  const startMusic = () => {
+    const AudioCtx = window.AudioContext || (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext
+    if (!AudioCtx) return
+
+    const context = audioContextRef.current ?? new AudioCtx()
+    audioContextRef.current = context
+    if (context.state === 'suspended') {
+      void context.resume()
+    }
+
+    const melody = [220, 261.63, 329.63, 392, 349.23, 329.63, 293.66, 261.63, 293.66, 329.63, 392, 440]
+    const harmony = [164.81, 196, 246.94, 293.66, 246.94, 220, 196, 174.61]
+    let step = 0
+
+    const scheduleNext = () => {
+      if (!isPlayingRef.current) return
+
+      const now = context.currentTime
+      const baseFrequency = melody[step % melody.length]
+      const harmonyFrequency = harmony[step % harmony.length]
+      playTone(baseFrequency, now, 0.8, 0.035, 'sine')
+      playTone(harmonyFrequency, now + 0.06, 1.0, 0.02, 'triangle')
+      step += 1
+      timerRef.current = window.setTimeout(scheduleNext, 620)
+    }
+
+    isPlayingRef.current = true
+    scheduleNext()
+  }
+
+  const stopMusic = () => {
+    isPlayingRef.current = false
+    if (timerRef.current) {
+      window.clearTimeout(timerRef.current)
+      timerRef.current = null
+    }
+  }
+
+  const onToggleMusic = () => {
+    if (playing) {
+      stopMusic()
+      setPlaying(false)
+      return
+    }
+
+    startMusic()
+    setPlaying(true)
+  }
+
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
       {expanded && (
@@ -929,11 +789,11 @@ function MusicPlayer() {
             Our Song
           </p>
           <p className="font-lora italic text-xs" style={{ fontFamily: "'Lora', serif", color: theme.accentLight }}>
-            Perfect — Ed Sheeran
+            A soft romantic melody
           </p>
           <GoldDivider className="my-2" />
           <p className="font-cinzel text-xs" style={{ fontFamily: "'Cinzel', serif", color: theme.accentColor, opacity: 0.6, fontSize: '0.6rem' }}>
-            Add your music URL in the theme config
+            Starts when you tap play
           </p>
         </div>
       )}
@@ -943,7 +803,7 @@ function MusicPlayer() {
                 style={{ borderColor: theme.accentColor, color: theme.accentColor, background: 'rgba(62,5,16,0.8)' }}>
           <span className="text-xs font-cinzel">♪</span>
         </button>
-        <button onClick={() => setPlaying(v => !v)}
+        <button onClick={onToggleMusic}
                 className="w-14 h-14 rounded-full flex items-center justify-center transition-all animate-pulse-gold"
                 style={{ background: theme.accentColor, color: theme.deepColor }}>
           <span className="text-lg">{playing ? '⏸' : '▶'}</span>
@@ -964,9 +824,6 @@ export default function App() {
       <Venue />
       <Schedule />
       <Celebration />
-      <Gallery />
-      <Gifts />
-      <RSVP />
       <Contacts />
       <Footer />
       <MusicPlayer />
