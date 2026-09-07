@@ -608,8 +608,8 @@ function Celebration() {
 
 // ─── Contacts ─────────────────────────────────────────────────────────────────
 const contacts = [
-  { name: 'Bridal Coordinator', phone: '08056789012', role: 'Coordinator' },
-  { name: 'Event Planner', phone: '08034567890', role: 'Planner' },
+  { name: 'Bridal Coordinator', phone: '07025882374', role: 'Coordinator' },
+  { name: 'Event Planner', phone: '09064851200', role: 'Planner' },
 ]
 
 function Contacts() {
